@@ -112,4 +112,6 @@ Evidencia local:
 - evidence/arrival-report.json y capturas arrival-1180-q7.png, arrival-1200-q7.png y arrival-real-q7.png.
 - La regresión de llegada se ejecuta ahora en GitHub Actions antes de desplegar.
 
-La verificación pública de esta corrección se registrará después del despliegue.
+Verificación pública aprobada: las diez preguntas y la victoria en los siete anchos de ventana, y partida completa con animación real y redimensionamiento durante el viaje a la pregunta 7. Evidencia en evidence/remote/arrival-report.json.
+
+Despliegue de la corrección: https://github.com/fzambran/trivia-metro-santiago/actions/runs/38819907766 (success), commit funcional bcf1e7ea0d21edfbb74eee5342b41a48d4c9edcb. El job incluye las 21 pruebas unitarias y la regresión de llegada con Chrome antes de publicar. HTML, app.js y respaldo offline públicos coinciden byte por byte con la versión verificada.
