@@ -1,0 +1,23 @@
+✔ validated content and timings (1.291916ms)
+✔ perfect journey and complete restart (0.130458ms)
+✔ failure at question 1 preserves correct safe station (0.049375ms)
+✔ failure at question 2 preserves correct safe station (0.040084ms)
+✔ failure at question 3 preserves correct safe station (0.041833ms)
+✔ failure at question 4 preserves correct safe station (0.029083ms)
+✔ failure at question 5 preserves correct safe station (0.032375ms)
+✔ failure at question 6 preserves correct safe station (0.032292ms)
+✔ failure at question 7 preserves correct safe station (0.053083ms)
+✔ failure at question 8 preserves correct safe station (0.06425ms)
+✔ failure at question 9 preserves correct safe station (0.03525ms)
+✔ failure at question 10 preserves correct safe station (0.029792ms)
+✔ guards against premature, repeated, hidden and invalid selections (0.097ms)
+✔ lifelines half then poll over every question and random range (0.69975ms)
+✔ lifelines poll then half over every question and random range (0.4565ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 37.578959

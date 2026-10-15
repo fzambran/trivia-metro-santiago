@@ -1,0 +1,35 @@
+import { questions } from './questions.js';
+import { Game, TRAVEL_MS, SUSPENSE_MS } from './game.js';
+const game=new Game();
+const screen=document.querySelector('#screen');
+const names=['Neptuno',...questions.map(q=>q.station)];
+const letters=['a','b','c','d'];
+let timer;
+const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+const button=(action,label,cls='primary')=>`<button class="${cls}" data-action="${action}">${label}</button>`;
+function route() {
+ document.querySelector('#stations').innerHTML=names.map((name,i)=>{const completed=i>0&&i<=game.hits; const current=i===game.index+1;return `<li class="${completed?'completed':''} ${current?'current':''} ${i===5?'safe-stop':''}" ${current?'aria-current="step"':''}><span class="dot">${completed?'✓':i===5?'◆':''}</span><span class="station-name">${name}</span>${i===0?'<small>PARTIDA</small>':i===5?'<small>SEGURA</small>':''}</li>`;}).join('');
+ const x=4.545+(Math.max(0,game.index+1)/10)*90.909;
+ const train=document.querySelector('#train');train.style.left=`${x}%`;train.style.transitionDuration=reduced.matches?'0s':`${TRAVEL_MS}ms`;train.setAttribute('aria-label',`Tren ${game.phase==='travel'?'hacia':'en'} ${names[Math.max(0,game.index+1)]}`);
+ document.querySelector('#rail-done').style.width=`${game.hits/10*90.909}%`;
+ document.querySelector('#progress').textContent=game.index<0?'En el punto de partida · 0 de 10':`${game.question.station} · Pregunta ${game.index+1} de 10`;
+}
+function render(focus=true) {
+ route();const phase=game.phase;const q=game.question;
+ if(phase==='intro')screen.innerHTML=`<section class="intro"><div class="intro-copy"><div class="eyebrow">EL CONOCIMIENTO TAMBIÉN NOS MUEVE</div><h1>Próximo destino:<br><em>La Moneda.</em></h1><p class="lead">Diez estaciones. Diez preguntas.<br>¿Cuánto sabemos del Metro de Santiago?</p>${button('start','Comenzar el viaje <span aria-hidden="true">↗</span>')}<p class="hint">El relator conduce. El grupo elige la respuesta.</p></div><aside class="instructions"><span class="ticket-label">TU BOLETO DE VIAJE <b>L1</b></span><h2>Así se juega</h2><ol><li><b>Una estación, una pregunta.</b><span>Conversen y elijan una de las cuatro alternativas. Sin límite de tiempo.</span></li><li><b>Dos ayudas en el camino.</b><span>50/50 y Consulta al andén. Cada comodín se puede usar una sola vez.</span></li><li><b>Aseguren su recorrido.</b><span>Acertar la pregunta 5 asegura Universidad de Santiago. Un error termina el viaje.</span></li></ol><div class="ticket-bottom">DESTINO <strong>La Moneda</strong><span>10 / 10</span></div></aside></section>`;
+ else if(phase==='travel')screen.innerHTML=`<section class="travel-screen"><span class="eyebrow">VAMOS AVANZANDO</span><h1>Próxima estación:<br><em>${q.station}</em></h1><p>Prepárense para la pregunta ${game.index+1} de 10.</p><div class="travel-dots" aria-hidden="true">● ● ●</div></section>`;
+ else if(phase==='defeat'||phase==='victory') {
+ const won=phase==='victory';screen.innerHTML=`<section class="end"><span class="end-icon" aria-hidden="true">${won?'⚑':'■'}</span><span class="eyebrow">${won?'DESTINO ALCANZADO':'FIN DEL RECORRIDO'}</span><h1>${won?'¡Llegamos a La Moneda!':'El viaje termina aquí.'}</h1><p class="lead">${won?'Diez respuestas correctas. Un gran viaje de aprendizaje.':'Cada estación nos deja algo por aprender.'}</p>${won?`<p class="final-explanation">${q.explanation}</p>`:''}<div class="stats"><div><small>RESPUESTAS ACERTADAS</small><strong>${game.hits} / 10</strong></div><div><small>AVANCE ASEGURADO</small><strong>${won?'La Moneda':game.safe?'Universidad de Santiago':'Sin estación segura'}</strong></div></div>${button('restart','Jugar de nuevo <span aria-hidden="true">↗</span>')}</section>`;
+ } else {
+ const result=phase==='correct'||phase==='wrong';
+ screen.innerHTML=`<section class="question-layout"><div class="question-main"><div class="eyebrow">ESTACIÓN ${String(game.index+1).padStart(2,'0')} <span class="separator">/</span> ${q.station.toUpperCase()}</div><h1 class="question-title">${q.question}</h1><div class="answers">${q.options.map((text,i)=>{let cls='answer';if(game.selected===i)cls+=' selected';if(result&&i===q.correct)cls+=' right';if(phase==='wrong'&&game.selected===i)cls+=' wrong';return `<button class="${cls}" data-answer="${i}" ${phase!=='question'||game.hidden.includes(i)?'disabled':''}><span class="letter">${letters[i]}</span><span>${game.hidden.includes(i)?'Alternativa eliminada':text}</span><span class="answer-mark">${result&&i===q.correct?'✓':phase==='wrong'&&i===game.selected?'✕':''}</span></button>`;}).join('')}</div><div class="feedback ${result?(phase==='correct'?'success':'failure'):''}" role="status">${phase==='suspense'?'<b>Respuesta elegida…</b> Un momento de suspenso.':result?`<b>${phase==='correct'?'¡Respuesta correcta!':'Respuesta incorrecta.'}</b><p>${phase==='wrong'?`La correcta es ${letters[q.correct]}) ${q.options[q.correct]}. `:''}${q.explanation}</p>${phase==='correct'&&game.index===4?'<p><b>◆ Universidad de Santiago asegurada.</b></p>':''}${button(phase==='correct'?'next':'finish',phase==='correct'?'Siguiente estación →':'Ver resultado final →')}`:'<span>Conversen, acuerden y elijan una alternativa.</span>'}</div></div><aside class="help-panel"><span class="eyebrow">AYUDAS PARA EL VIAJE</span><h2>Comodines</h2><p>Una oportunidad de cada uno.<br>Úsenlos cuando lo necesiten.</p><button class="lifeline" data-action="half" ${phase!=='question'||game.used.half?'disabled':''}><strong>50/50</strong><span>${game.used.half?'Comodín utilizado':'Elimina dos incorrectas'}</span><b aria-hidden="true">${game.used.half?'✓':'+'}</b></button><button class="lifeline" data-action="poll" ${phase!=='question'||game.used.poll?'disabled':''}><strong>Consulta al andén</strong><span>${game.used.poll?'Comodín utilizado':'Una pista de los pasajeros'}</span><b aria-hidden="true">${game.used.poll?'✓':'+'}</b></button>${game.votes?`<div class="poll"><h3>Votos simulados</h3>${game.votes.map((v,i)=>`<div class="vote"><span>${letters[i]}</span><div><i style="width:${v}%"></i></div><b>${v}%</b></div>`).join('')}<small>Simulación orientativa; no son votos reales.</small></div>`:''}<div class="safe-note"><span>◆</span><div><b>${game.safe?'Estación asegurada':'Tu estación segura'}</b><p>Universidad de Santiago${game.safe?'':' · Pregunta 5'}</p></div></div></aside></section>`;
+ }
+ if(focus)screen.focus({preventScroll:true});
+}
+function travel() { render();timer=setTimeout(()=>{game.arrive();render();},TRAVEL_MS); }
+screen.addEventListener('click',event=>{
+ const target=event.target.closest('button');if(!target||target.disabled)return;
+ if(target.dataset.answer!==undefined){if(game.select(Number(target.dataset.answer))){render();timer=setTimeout(()=>{game.resolve();render();},SUSPENSE_MS);}return;}
+ switch(target.dataset.action){case 'start':if(game.start())travel();break;case 'next':if(game.next())travel();break;case 'finish':game.finish();render();break;case 'restart':clearTimeout(timer);game.reset();render();break;case 'half':case 'poll':if(game.lifeline(target.dataset.action))render(false);break;}
+});
+render(false);

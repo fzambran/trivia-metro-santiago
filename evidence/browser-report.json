@@ -1,0 +1,228 @@
+{
+  "base": "http://127.0.0.1:4173",
+  "checkedAt": "2026-10-15T07:13:54.472Z",
+  "report": [
+    {
+      "realAnimation": "passed",
+      "midpoint": {
+        "x": 196.25,
+        "stops": [
+          111.75,
+          226
+        ]
+      },
+      "arrivalOffset": 0.015625
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "state": "inicio",
+      "layout": {
+        "height": 768,
+        "width": 1366,
+        "viewportHeight": 768,
+        "viewportWidth": 1366,
+        "clipped": []
+      }
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "state": "pregunta",
+      "layout": {
+        "height": 768,
+        "width": 1366,
+        "viewportHeight": 768,
+        "viewportWidth": 1366,
+        "clipped": []
+      }
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "state": "consulta",
+      "layout": {
+        "height": 768,
+        "width": 1366,
+        "viewportHeight": 768,
+        "viewportWidth": 1366,
+        "clipped": []
+      }
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "state": "pregunta-larga",
+      "layout": {
+        "height": 768,
+        "width": 1366,
+        "viewportHeight": 768,
+        "viewportWidth": 1366,
+        "clipped": []
+      }
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "state": "seguro",
+      "layout": {
+        "height": 768,
+        "width": 1366,
+        "viewportHeight": 768,
+        "viewportWidth": 1366,
+        "clipped": []
+      }
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "state": "victoria",
+      "layout": {
+        "height": 768,
+        "width": 1366,
+        "viewportHeight": 768,
+        "viewportWidth": 1366,
+        "clipped": []
+      }
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "state": "error",
+      "layout": {
+        "height": 768,
+        "width": 1366,
+        "viewportHeight": 768,
+        "viewportWidth": 1366,
+        "clipped": []
+      }
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "state": "derrota",
+      "layout": {
+        "height": 768,
+        "width": 1366,
+        "viewportHeight": 768,
+        "viewportWidth": 1366,
+        "clipped": []
+      }
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "consoleErrors": [],
+      "timing": "2499/2500 ms and 1999/2000 ms boundaries verified",
+      "keyboard": true,
+      "reducedMotion": true
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "state": "inicio",
+      "layout": {
+        "height": 1080,
+        "width": 1920,
+        "viewportHeight": 1080,
+        "viewportWidth": 1920,
+        "clipped": []
+      }
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "state": "pregunta",
+      "layout": {
+        "height": 1080,
+        "width": 1920,
+        "viewportHeight": 1080,
+        "viewportWidth": 1920,
+        "clipped": []
+      }
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "state": "consulta",
+      "layout": {
+        "height": 1080,
+        "width": 1920,
+        "viewportHeight": 1080,
+        "viewportWidth": 1920,
+        "clipped": []
+      }
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "state": "pregunta-larga",
+      "layout": {
+        "height": 1080,
+        "width": 1920,
+        "viewportHeight": 1080,
+        "viewportWidth": 1920,
+        "clipped": []
+      }
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "state": "seguro",
+      "layout": {
+        "height": 1080,
+        "width": 1920,
+        "viewportHeight": 1080,
+        "viewportWidth": 1920,
+        "clipped": []
+      }
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "state": "victoria",
+      "layout": {
+        "height": 1080,
+        "width": 1920,
+        "viewportHeight": 1080,
+        "viewportWidth": 1920,
+        "clipped": []
+      }
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "state": "error",
+      "layout": {
+        "height": 1080,
+        "width": 1920,
+        "viewportHeight": 1080,
+        "viewportWidth": 1920,
+        "clipped": []
+      }
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "state": "derrota",
+      "layout": {
+        "height": 1080,
+        "width": 1920,
+        "viewportHeight": 1080,
+        "viewportWidth": 1920,
+        "clipped": []
+      }
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "consoleErrors": [],
+      "timing": "2499/2500 ms and 1999/2000 ms boundaries verified",
+      "keyboard": true,
+      "reducedMotion": true
+    },
+    {
+      "offlineFile": "passed"
+    }
+  ]
+}
