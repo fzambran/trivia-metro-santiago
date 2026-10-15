@@ -69,5 +69,14 @@ Solicitud posterior del usuario: reemplazar la marca provisional por su logo ofi
 - 18 pruebas unitarias (15 reglas + 3 audio), todas aprobadas. Se verifica la generación de audio no vacío, contexto reanudado, aplausos estéreo, osciladores de chicharra y degradación sin bloquear el juego si no hay audio disponible.
 - Navegador: imágenes cargadas, eventos reales de Web Audio en estado running tras aciertos/errores, incluido el décimo acierto. Se observa la posición del tren cuando se inserta la pregunta; no debe separarse más de un píxel del centro de la estación.
 - Prueba adicional: transición visual extendida a 3000 ms; la pregunta sigue oculta a los 2700 ms y aparece al llegar, sin depender solo del temporizador de 2500 ms.
-- Capturas y evidencia de las dos resoluciones se actualizan en `evidence/`. La evidencia remota de esta actualización se registrará tras desplegar.
+- Capturas y evidencia de las dos resoluciones se actualizan en `evidence/`. La evidencia remota de esta actualización está en `evidence/remote/browser-report.json`.
 - No se ha realizado escucha con los altavoces físicos de la sala; el relator debe ajustar su volumen antes de la capacitación.
+
+
+### Verificación pública de la actualización
+
+- Commit funcional: `13bc84d8b811f70669da52eda22866ddb31fe7fc`.
+- Despliegue aprobado: https://github.com/fzambran/trivia-metro-santiago/actions/runs/38789509033 (`completed / success`).
+- Suite de navegador repetida sobre https://fzambran.github.io/trivia-metro-santiago/: aprobada en ambas resoluciones, incluidos imágenes cargadas, audio Web Audio, llegada real y animación retrasada, victoria, derrota y reinicio.
+- HTTP 200 y coincidencia exacta con fuentes verificadas para HTML, CSS, app.js, audio.js, logo oficial, NS-93 y respaldo offline.
+- El logo publicado coincide byte por byte con el adjunto del usuario. Las capturas locales del repositorio se renovaron con la nueva apariencia.
