@@ -1,0 +1,382 @@
+{
+  "base": "http://127.0.0.1:4173",
+  "checkedAt": "2026-10-15T22:50:13.583Z",
+  "report": [
+    {
+      "width": 900,
+      "mode": "reduced",
+      "victory": true,
+      "stops": [
+        {
+          "question": 1,
+          "delta": 0
+        },
+        {
+          "question": 2,
+          "delta": 0
+        },
+        {
+          "question": 3,
+          "delta": 0
+        },
+        {
+          "question": 4,
+          "delta": 0
+        },
+        {
+          "question": 5,
+          "delta": 0
+        },
+        {
+          "question": 6,
+          "delta": 0
+        },
+        {
+          "question": 7,
+          "delta": 0
+        },
+        {
+          "question": 8,
+          "delta": 0
+        },
+        {
+          "question": 9,
+          "delta": 0
+        },
+        {
+          "question": 10,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "width": 1024,
+      "mode": "reduced",
+      "victory": true,
+      "stops": [
+        {
+          "question": 1,
+          "delta": 0
+        },
+        {
+          "question": 2,
+          "delta": 0
+        },
+        {
+          "question": 3,
+          "delta": 0
+        },
+        {
+          "question": 4,
+          "delta": 0
+        },
+        {
+          "question": 5,
+          "delta": 0
+        },
+        {
+          "question": 6,
+          "delta": 0
+        },
+        {
+          "question": 7,
+          "delta": 0
+        },
+        {
+          "question": 8,
+          "delta": 0
+        },
+        {
+          "question": 9,
+          "delta": 0
+        },
+        {
+          "question": 10,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "width": 1180,
+      "mode": "reduced",
+      "victory": true,
+      "stops": [
+        {
+          "question": 1,
+          "delta": 0
+        },
+        {
+          "question": 2,
+          "delta": 0
+        },
+        {
+          "question": 3,
+          "delta": 0
+        },
+        {
+          "question": 4,
+          "delta": 0
+        },
+        {
+          "question": 5,
+          "delta": 0
+        },
+        {
+          "question": 6,
+          "delta": 0
+        },
+        {
+          "question": 7,
+          "delta": 0
+        },
+        {
+          "question": 8,
+          "delta": 0
+        },
+        {
+          "question": 9,
+          "delta": 0
+        },
+        {
+          "question": 10,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "width": 1200,
+      "mode": "reduced",
+      "victory": true,
+      "stops": [
+        {
+          "question": 1,
+          "delta": 0
+        },
+        {
+          "question": 2,
+          "delta": 0
+        },
+        {
+          "question": 3,
+          "delta": 0
+        },
+        {
+          "question": 4,
+          "delta": 0
+        },
+        {
+          "question": 5,
+          "delta": 0
+        },
+        {
+          "question": 6,
+          "delta": 0
+        },
+        {
+          "question": 7,
+          "delta": 0
+        },
+        {
+          "question": 8,
+          "delta": 0
+        },
+        {
+          "question": 9,
+          "delta": 0
+        },
+        {
+          "question": 10,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "mode": "reduced",
+      "victory": true,
+      "stops": [
+        {
+          "question": 1,
+          "delta": 0
+        },
+        {
+          "question": 2,
+          "delta": 0
+        },
+        {
+          "question": 3,
+          "delta": 0
+        },
+        {
+          "question": 4,
+          "delta": 0
+        },
+        {
+          "question": 5,
+          "delta": 0
+        },
+        {
+          "question": 6,
+          "delta": 0
+        },
+        {
+          "question": 7,
+          "delta": 0
+        },
+        {
+          "question": 8,
+          "delta": 0
+        },
+        {
+          "question": 9,
+          "delta": 0
+        },
+        {
+          "question": 10,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "width": 1366,
+      "mode": "reduced",
+      "victory": true,
+      "stops": [
+        {
+          "question": 1,
+          "delta": 0
+        },
+        {
+          "question": 2,
+          "delta": 0
+        },
+        {
+          "question": 3,
+          "delta": 0
+        },
+        {
+          "question": 4,
+          "delta": 0
+        },
+        {
+          "question": 5,
+          "delta": 0
+        },
+        {
+          "question": 6,
+          "delta": 0
+        },
+        {
+          "question": 7,
+          "delta": 0
+        },
+        {
+          "question": 8,
+          "delta": 0
+        },
+        {
+          "question": 9,
+          "delta": 0
+        },
+        {
+          "question": 10,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "width": 1920,
+      "mode": "reduced",
+      "victory": true,
+      "stops": [
+        {
+          "question": 1,
+          "delta": 0
+        },
+        {
+          "question": 2,
+          "delta": 0
+        },
+        {
+          "question": 3,
+          "delta": 0
+        },
+        {
+          "question": 4,
+          "delta": 0
+        },
+        {
+          "question": 5,
+          "delta": 0
+        },
+        {
+          "question": 6,
+          "delta": 0
+        },
+        {
+          "question": 7,
+          "delta": 0
+        },
+        {
+          "question": 8,
+          "delta": 0
+        },
+        {
+          "question": 9,
+          "delta": 0
+        },
+        {
+          "question": 10,
+          "delta": 0
+        }
+      ]
+    },
+    {
+      "mode": "real animation",
+      "resizeDuringQuestion7": true,
+      "victory": true,
+      "stops": [
+        {
+          "question": 1,
+          "delta": 0
+        },
+        {
+          "question": 2,
+          "delta": 0
+        },
+        {
+          "question": 3,
+          "delta": 0
+        },
+        {
+          "question": 4,
+          "delta": 0
+        },
+        {
+          "question": 5,
+          "delta": 0
+        },
+        {
+          "question": 6,
+          "delta": 0
+        },
+        {
+          "question": 7,
+          "delta": 0
+        },
+        {
+          "question": 8,
+          "delta": 0
+        },
+        {
+          "question": 9,
+          "delta": 0
+        },
+        {
+          "question": 10,
+          "delta": 0
+        }
+      ]
+    }
+  ]
+}

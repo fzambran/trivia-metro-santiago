@@ -91,3 +91,25 @@ Solicitud posterior del usuario: reemplazar la marca provisional por su logo ofi
 - Verificación pública aprobada sobre el enlace del juego: grabación decodificada de aproximadamente 3 segundos y reproducida tras los aciertos en ambas resoluciones. Despliegue: https://github.com/fzambran/trivia-metro-santiago/actions/runs/38791618155 (success), commit funcional c0623fc55825534ee7249207843dcdca94f41039.
 
 Las suites local y remota volvieron a pasar con el reloj de prueba pausado durante la descarga/decodificación del MP3, evitando que la latencia de red altere los límites de 2499/2500 ms. La prueba de animación real conserva su reloj real. El MP3, audio.js y el HTML offline publicados coinciden exactamente con los archivos verificados.
+
+
+## Corrección del bloqueo en pregunta 7
+
+Reproducción de la versión anterior en 1180 × 768 y 1200 × 768: tras seis aciertos, Unión Latinoamericana quedaba en pantalla de viaje sin alternativas. El tren ya no tenía animación activa, pero su centro difería de la estación en 1,328125 px y 1 px respectivamente. La condición anterior exigía menos de 1 px y esperaba indefinidamente.
+
+Causa: CSS Grid puede dar anchos diferentes a las columnas por el tamaño mínimo del nombre en negrita «Unión Latinoamericana». El tren usaba porcentajes que suponían once columnas iguales. Las pruebas anteriores cubrían la partida en 1366 y 1920 px y animación real solo en la primera estación, por lo que no detectaban esta combinación.
+
+Corrección:
+- Destinos del tren y extremos del riel medidos desde los centros reales de las estaciones.
+- Recalcular posiciones al redimensionar el mapa con ResizeObserver.
+- Tras finalizar la transición de posición, asentar el tren en el centro real y revelar la pregunta; sin bucle infinito condicionado a un error de redondeo.
+- Versionar la referencia a app.js para evitar reutilizar la lógica anterior desde caché. El respaldo HTML conserva el código incrustado.
+
+Evidencia local:
+- 21 pruebas unitarias aprobadas y suite de navegador estándar aprobada en 1366 × 768 y 1920 × 1080.
+- scripts/arrival-check.mjs completa las diez preguntas y victoria en 900, 1024, 1180, 1200, 1280, 1366 y 1920 px, verificando en cada estación pregunta visible y error de alineación menor de 0,1 px.
+- Partida completa adicional con animación CSS real y redimensionamiento de 1280 a 1180 px durante el viaje a la pregunta 7: victoria y alineación correcta.
+- evidence/arrival-report.json y capturas arrival-1180-q7.png, arrival-1200-q7.png y arrival-real-q7.png.
+- La regresión de llegada se ejecuta ahora en GitHub Actions antes de desplegar.
+
+La verificación pública de esta corrección se registrará después del despliegue.

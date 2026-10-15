@@ -13,10 +13,24 @@ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 const button=(action,label,cls='primary')=>`<button class="${cls}" data-action="${action}">${label}</button>`;
 function route() {
  document.querySelector('#stations').innerHTML=names.map((name,i)=>{const completed=i>0&&i<=game.hits; const current=i===game.index+1;return `<li class="${completed?'completed':''} ${current?'current':''} ${i===5?'safe-stop':''}" ${current?'aria-current="step"':''}><span class="dot">${completed?'✓':i===5?'◆':''}</span><span class="station-name">${name}</span>${i===0?'<small>PARTIDA</small>':i===5?'<small>SEGURA</small>':''}</li>`;}).join('');
- const x=4.545+(Math.max(0,game.index+1)/10)*90.909;
- const train=document.querySelector('#train');train.style.transitionDuration=reduced.matches||game.phase==='intro'?'0s':`${TRAVEL_MS}ms`;train.style.left=`${x}%`;train.setAttribute('aria-label',`Tren NS-93 ${game.phase==='travel'?'hacia':'en'} ${names[Math.max(0,game.index+1)]}`);
- document.querySelector('#rail-done').style.width=`${game.hits/10*90.909}%`;
+ positionRoute();
+ const train=document.querySelector('#train');train.setAttribute('aria-label',`Tren NS-93 ${game.phase==='travel'?'hacia':'en'} ${names[Math.max(0,game.index+1)]}`);
  document.querySelector('#progress').textContent=game.index<0?'En el punto de partida · 0 de 10':`${game.question.station} · Pregunta ${game.index+1} de 10`;
+}
+function stationCenter(index) {
+ const map=document.querySelector('.map').getBoundingClientRect();
+ const dot=document.querySelectorAll('#stations .dot')[index].getBoundingClientRect();
+ return dot.left+dot.width/2-map.left;
+}
+function positionRoute() {
+ // Long station labels can make grid tracks unequal. Always use rendered dots,
+ // including after resizing, rather than assuming eleven equal-width columns.
+ const first=stationCenter(0),last=stationCenter(names.length-1);
+ const train=document.querySelector('#train');
+ train.style.transitionDuration=reduced.matches||game.phase==='intro'?'0s':`${TRAVEL_MS}ms`;
+ train.style.left=`${stationCenter(Math.max(0,game.index+1))}px`;
+ const rail=document.querySelector('.rail');rail.style.left=`${first}px`;rail.style.width=`${last-first}px`;
+ const done=document.querySelector('#rail-done');done.style.left=`${first}px`;done.style.width=`${stationCenter(game.hits)-first}px`;
 }
 function render(focus=true) {
  route();const phase=game.phase;const q=game.question;
@@ -42,10 +56,13 @@ function travel() {
  void train.offsetWidth;
  function arriveWhenStopped() {
    if(game.phase!=='travel')return;
-   const vehicle=train.getBoundingClientRect();
-   const station=document.querySelector('li.current .dot').getBoundingClientRect();
-   const moving=train.getAnimations().some(animation=>animation.playState==='running');
-   if(!moving&&Math.abs(vehicle.left+vehicle.width/2-station.left-station.width/2)<1) {
+   const moving=train.getAnimations().some(animation=>animation.playState==='running'&&animation.transitionProperty==='left');
+   if(!moving) {
+     // Settle at the real station before revealing. Fractional pixels or a layout
+     // change must never turn a completed transition into an endless wait.
+     train.style.transitionDuration='0s';
+     train.style.left=`${stationCenter(game.index+1)}px`;
+     void train.offsetWidth;
      clearArrival();game.arrive();render();
    } else arrivalFrame=requestAnimationFrame(arriveWhenStopped);
  }
@@ -62,3 +79,4 @@ screen.addEventListener('click',event=>{
  switch(target.dataset.action){case 'start':if(game.start())travel();break;case 'next':if(game.next())travel();break;case 'finish':game.finish();render();break;case 'restart':clearArrival();sounds.stop();game.reset();render();break;case 'half':case 'poll':if(game.lifeline(target.dataset.action))render(false);break;}
 });
 render(false);
+new ResizeObserver(positionRoute).observe(document.querySelector('.map'));

@@ -35,6 +35,7 @@ Para reproducir las pruebas de navegador:
 npm install --no-save --package-lock=false playwright@1.62.1
 npx playwright install chrome
 npm run test:browser
+npm run test:arrival
 ```
 
 El script usa Chrome instalado (`channel: chrome`). Instala Chrome si no está disponible. Ejecuta primero `npm run build` y deja `npm start` corriendo en otra terminal. Las capturas y resultados quedan en `evidence/`. Para verificar otra URL: `GAME_URL=https://fzambran.github.io/trivia-metro-santiago/ npm run test:browser`.
@@ -53,3 +54,5 @@ No hay servidor, cuentas, datos personales, analítica ni persistencia. Ningún 
 La revisión visual local no sustituye el ensayo físico con proyector; el relator debe comprobarlo antes de su capacitación.
 
 El aplauso usa un fragmento de tres segundos del [sonido indicado por el usuario](https://www.youtube.com/watch?v=PsLXAIN-fxo), almacenado en `assets/applause.mp3`. Fuente y edición en `assets/AUDIO.md`. También está incrustado en el respaldo sin conexión.
+
+`npm run test:arrival` verifica las diez preguntas en siete anchos de ventana (incluidos 1180 y 1200 px), una partida con animación real y redimensionamiento durante el viaje a la pregunta 7. GitHub Actions ejecuta esta regresión antes de publicar y conserva su evidencia como artefacto.

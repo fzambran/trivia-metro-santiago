@@ -23,6 +23,22 @@ jobs:
           node-version: '22'
       - run: npm test
       - run: npm run build
+      - name: Install browser test tools
+        run: npm install --no-save --package-lock=false playwright@1.62.1
+      - name: Ensure Chrome is available
+        run: npx playwright install chrome
+      - name: Check every station and resizing before deployment
+        run: |
+          npm start > /tmp/trivia-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          curl --fail --retry 10 --retry-connrefused --retry-delay 1 http://127.0.0.1:4173/ > /dev/null
+          npm run test:arrival
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: station-arrival-evidence
+          path: evidence/arrival*
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

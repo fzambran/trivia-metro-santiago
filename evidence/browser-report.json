@@ -1,6 +1,6 @@
 {
   "base": "http://127.0.0.1:4173",
-  "checkedAt": "2026-10-15T19:11:52.215Z",
+  "checkedAt": "2026-10-15T22:49:58.969Z",
   "report": [
     {
       "realAnimation": "passed",
@@ -11,7 +11,7 @@
           226
         ]
       },
-      "arrivalOffset": 0.015625
+      "arrivalOffset": 0
     },
     {
       "actualArrivalGate": "passed with 3000 ms CSS transition; no question at 2700 ms"

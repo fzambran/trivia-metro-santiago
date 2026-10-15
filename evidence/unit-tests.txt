@@ -1,24 +1,24 @@
-✔ sound failures never prevent game result (0.383375ms)
-✔ unlock resumes suspended audio and plays decoded recording (0.331708ms)
-✔ wrong answer plays buzzer and stops previous applause (0.38825ms)
-✔ slow recording load plays once ready (0.455917ms)
-✔ reset cancels pending recorded applause (0.094083ms)
-✔ unavailable recording does not block buzzer and can retry (0.089334ms)
-✔ validated content and timings (1.013542ms)
-✔ perfect journey and complete restart (0.130458ms)
-✔ failure at question 1 preserves correct safe station (0.053125ms)
-✔ failure at question 2 preserves correct safe station (0.033666ms)
-✔ failure at question 3 preserves correct safe station (0.033958ms)
-✔ failure at question 4 preserves correct safe station (0.030042ms)
-✔ failure at question 5 preserves correct safe station (0.034166ms)
-✔ failure at question 6 preserves correct safe station (0.037792ms)
-✔ failure at question 7 preserves correct safe station (0.0465ms)
-✔ failure at question 8 preserves correct safe station (0.06125ms)
-✔ failure at question 9 preserves correct safe station (0.035958ms)
-✔ failure at question 10 preserves correct safe station (0.02975ms)
-✔ guards against premature, repeated, hidden and invalid selections (0.09225ms)
-✔ lifelines half then poll over every question and random range (0.621208ms)
-✔ lifelines poll then half over every question and random range (0.618333ms)
+✔ sound failures never prevent game result (0.443375ms)
+✔ unlock resumes suspended audio and plays decoded recording (0.16275ms)
+✔ wrong answer plays buzzer and stops previous applause (0.351375ms)
+✔ slow recording load plays once ready (0.435834ms)
+✔ reset cancels pending recorded applause (0.092208ms)
+✔ unavailable recording does not block buzzer and can retry (0.089375ms)
+✔ validated content and timings (0.985042ms)
+✔ perfect journey and complete restart (0.136ms)
+✔ failure at question 1 preserves correct safe station (0.052625ms)
+✔ failure at question 2 preserves correct safe station (0.030125ms)
+✔ failure at question 3 preserves correct safe station (0.03875ms)
+✔ failure at question 4 preserves correct safe station (0.030292ms)
+✔ failure at question 5 preserves correct safe station (0.038291ms)
+✔ failure at question 6 preserves correct safe station (0.0365ms)
+✔ failure at question 7 preserves correct safe station (0.042958ms)
+✔ failure at question 8 preserves correct safe station (0.063959ms)
+✔ failure at question 9 preserves correct safe station (0.039709ms)
+✔ failure at question 10 preserves correct safe station (0.028084ms)
+✔ guards against premature, repeated, hidden and invalid selections (0.091292ms)
+✔ lifelines half then poll over every question and random range (0.719417ms)
+✔ lifelines poll then half over every question and random range (0.194625ms)
 ℹ tests 21
 ℹ suites 0
 ℹ pass 21
@@ -26,4 +26,4 @@
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 41.37825
+ℹ duration_ms 41.839375
