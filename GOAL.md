@@ -19,7 +19,7 @@ Seguir PLAN.md y el cuestionario que valide el usuario. No agregar funcionalidad
 - Entrega de fuentes, cuestionario validado, evidencia de pruebas, guía del relator y copia estática descargable.
 
 ## Restricciones
-HTML, CSS y JavaScript estáticos. Datos de preguntas separados de la lógica. Sin servidor, cuentas de jugadores, datos personales, ranking, móviles conectados, audio ni analítica. Estado en memoria; recargar vuelve al inicio. Sin límite de tiempo para responder.
+HTML, CSS y JavaScript estáticos. Datos de preguntas separados de la lógica. Sin servidor, cuentas de jugadores, datos personales, ranking, móviles conectados ni analítica. Estado en memoria; recargar vuelve al inicio. Sin límite de tiempo para responder.
 
 ## Hitos de validación humana
 1. Cuestionario: detenerse antes de diseño e implementación hasta aprobación explícita.
@@ -36,3 +36,6 @@ El usuario validó el cuestionario e indicó continuar con implementación y des
 
 ## Resultado de implementación
 Aplicación estática publicada en https://fzambran.github.io/trivia-metro-santiago/ y repositorio público en https://github.com/fzambran/trivia-metro-santiago. Quince pruebas de reglas y comprobaciones de navegador en ambas resoluciones aprobadas localmente y en el enlace público. Evidencia en VALIDATION.md y evidence/. El ensayo con proyector físico queda pendiente del relator.
+
+## Cambios solicitados tras la entrega
+Incorporar el logo oficial adjunto, tren NS-93 basado en la referencia, aplausos al acertar y chicharra al fallar. La pregunta debe aparecer al finalizar efectivamente el movimiento. Sonidos originales sintetizados localmente, sin servicios externos.

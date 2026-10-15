@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { FeedbackAudio } from '../src/audio.js';
+function context(state='running'){
+ const sources=[],gain={gain:{value:0,setValueAtTime(){},linearRampToValueAtTime(){}},connect(){},disconnect(){}};
+ return {state,sampleRate:8000,currentTime:0,destination:{},sources,resume(){this.state='running';return Promise.resolve();},createGain(){return gain;},createBuffer(channels,length){const data=Array.from({length:channels},()=>new Float32Array(length));return {length,numberOfChannels:channels,getChannelData:i=>data[i]};},createBufferSource(){const s={kind:'buffer',connect(){},start(){this.started=true;},stop(){this.stopped=true;}};sources.push(s);return s;},createOscillator(){const s={kind:'oscillator',frequency:{value:0},connect(){},start(){this.started=true;},stop(){this.stopped=true;}};sources.push(s);return s;}};
+}
+test('sound failures never prevent game result',()=>{const audio=new FeedbackAudio(()=>{throw Error('Unavailable');});assert.doesNotThrow(()=>audio.unlock());assert.doesNotThrow(()=>audio.play(true));assert.doesNotThrow(()=>audio.play(false));});
+test('unlock resumes suspended audio and correct answer plays stereo applause',()=>{const ctx=context('suspended'),audio=new FeedbackAudio(()=>ctx);audio.unlock();assert.equal(ctx.state,'running');audio.play(true);assert.equal(ctx.sources[0].kind,'buffer');assert.equal(ctx.sources[0].buffer.numberOfChannels,2);assert.equal(ctx.sources[0].buffer.length,19200);assert.ok(ctx.sources[0].buffer.getChannelData(0).some(x=>x!==0));assert.equal(ctx.sources[0].started,true);});
+test('wrong answer plays buzzer and stops previous applause',()=>{const ctx=context(),audio=new FeedbackAudio(()=>ctx);audio.unlock();audio.play(true);audio.play(false);assert.equal(ctx.sources[0].stopped,true);assert.deepEqual(ctx.sources.slice(1).map(s=>s.frequency.value),[130,173]);assert.ok(ctx.sources.slice(1).every(s=>s.started&&s.type==='sawtooth'));audio.stop();assert.deepEqual(audio.active,[]);});

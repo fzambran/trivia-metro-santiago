@@ -9,8 +9,8 @@ Juego web estático para capacitación interna. El relator proyecta la pantalla 
 **Respaldo sin conexión:** https://fzambran.github.io/trivia-metro-santiago/trivia-offline.html (guardar el archivo HTML).
 
 1. Abre el juego en un navegador actualizado, con zoom al 100 % y pantalla completa para proyectar.
-2. Pulsa **Comenzar el viaje**. El tren parte en Neptuno y avanza a Pajaritos; cada pregunta aparece tras 2,5 segundos de viaje.
-3. Conversen sin límite de tiempo y elige una alternativa. La respuesta se bloquea durante 2 segundos de suspenso.
+2. Pulsa **Comenzar el viaje**. El tren parte en Neptuno y avanza a Pajaritos; cada pregunta aparece cuando el tren NS-93 llega efectivamente a la estación, con 2,5 segundos de viaje previstos.
+3. Conversen sin límite de tiempo y elige una alternativa. La respuesta se bloquea durante 2 segundos de suspenso. Se oyen aplausos al acertar y una chicharra al fallar; ajusta el volumen del computador antes de proyectar.
 4. Revisa la explicación y continúa. Acertar Universidad de Santiago (pregunta 5) asegura esa estación. Un error termina el juego: antes del quinto acierto no hay estación asegurada; después se conserva Universidad de Santiago.
 5. Usa **50/50** y **Consulta al andén** una vez cada uno, antes de responder. Los votos son simulados.
 6. Acertar las diez preguntas da la victoria. **Jugar de nuevo** borra todo el avance y restablece las ayudas. Recargar también vuelve al inicio.
@@ -42,7 +42,8 @@ El script usa Chrome instalado (`channel: chrome`). Instala Chrome si no está d
 ## Estructura y despliegue
 
 - `src/questions.js`: cuestionario validado por el usuario, incluidas observaciones documentales en CUESTIONARIO.md.
-- `src/game.js`: reglas independientes de la interfaz; `src/app.js`: vistas, eventos y temporizadores.
+- `src/game.js`: reglas independientes de la interfaz; `src/app.js`: vistas, eventos y temporizadores; `src/audio.js`: efectos sintetizados de aplausos y chicharra.
+- `assets/`: logo oficial adjunto e ilustración vectorial del NS-93 basada en la fotografía de referencia.
 - `tests/`: reglas y transiciones; `scripts/browser-check.mjs`: partidas y revisión en 1366 × 768 y 1920 × 1080.
 - `.github/workflows/pages.yml`: ejecuta pruebas y publica exclusivamente `dist/` desde main. En Settings → Pages seleccionar GitHub Actions como origen.
 - `expo.md`: prompt listo para una futura conversión nativa a Expo/React Native. Esa conversión no forma parte de la aplicación web entregada.

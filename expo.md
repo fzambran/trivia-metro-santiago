@@ -4,16 +4,17 @@ Este archivo completo es un prompt listo para pegar en un IDE con IA, con este r
 
 ## Encargo
 
-Convierte el juego web en una aplicación nativa Expo para iOS y Android dentro de `mobile/`, conservando el sitio estático y sus pruebas. No uses WebView como sustituto del port nativo. No agregues anuncios, cuentas, analítica, ranking, multijugador, audio ni backend.
+Convierte el juego web en una aplicación nativa Expo para iOS y Android dentro de `mobile/`, conservando el sitio estático y sus pruebas. No uses WebView como sustituto del port nativo. No agregues anuncios, cuentas, analítica, ranking, multijugador ni backend. Conserva los efectos de audio solicitados.
 
-Primero lee GOAL.md, PLAN.md, CUESTIONARIO.md, README.md, VALIDATION.md, src/questions.js, src/game.js, src/app.js, style.css y las pruebas. Ejecuta `npm test` y `npm run build` como referencia. Consulta las fuentes oficiales al final, verifica las versiones actuales compatibles y crea el proyecto con `npx create-expo-app@latest mobile`. Ajusta el starter real generado; no supongas una estructura de rutas determinada. Conserva un lockfile y documenta los comandos exactos.
+Primero lee GOAL.md, PLAN.md, CUESTIONARIO.md, README.md, VALIDATION.md, src/questions.js, src/game.js, src/app.js, src/audio.js, assets/, style.css y las pruebas. Ejecuta `npm test` y `npm run build` como referencia. Consulta las fuentes oficiales al final, verifica las versiones actuales compatibles y crea el proyecto con `npx create-expo-app@latest mobile`. Ajusta el starter real generado; no supongas una estructura de rutas determinada. Conserva un lockfile y documenta los comandos exactos.
 
 ## Reglas que debes conservar
 
 - Interfaz en español, relator como operador único, asistentes acuerdan respuestas. Sin tiempo límite.
 - Diez preguntas y sus alternativas en el mismo orden. Clave: 1b, 2a, 3c, 4d, 5b, 6c, 7a, 8b, 9c, 10d. Usa los datos validados de src/questions.js. Pregunta 7: Universidad de Chile–Fernando Castillo Velasco, Línea 3.
 - Recorrido rojo L1: Neptuno (solo origen), Pajaritos, Las Rejas, Ecuador, San Alberto Hurtado, Universidad de Santiago, Estación Central, Unión Latinoamericana, República, Los Héroes y La Moneda.
-- Viaje de 2500 ms por estación; revelar la pregunta solo al finalizar. Alternativa seleccionada resaltada, bloqueo inmediato contra doble toque, suspenso de 2000 ms y luego resolución con verde/rojo, icono, texto, respuesta correcta y explicación.
+- Viaje de 2500 ms por estación; revelar la pregunta solo al finalizar efectivamente el movimiento, incluso si la animación se retrasa. Alternativa seleccionada resaltada, bloqueo inmediato contra doble toque, suspenso de 2000 ms y luego resolución con verde/rojo, icono, texto, respuesta correcta y explicación.
+- Reproduce aplausos al acertar y chicharra al fallar, también en la décima pregunta. Usa recursos locales y una API de audio compatible con el SDK Expo instalado; libera o detén los efectos al reiniciar y desmontar.
 - Acierto permite Siguiente estación; el décimo lleva a victoria. Error muestra explicación y Ver resultado final.
 - Seguro únicamente tras acertar la quinta: fallar 1–5 no asegura estación; fallar 6–10 conserva Universidad de Santiago. Mostrar por separado aciertos y avance asegurado. Victoria asegura La Moneda.
 - 50/50 elimina dos incorrectas aleatorias; Consulta al andén produce votos etiquetados simulados, suma 100 %, mayoría para correcta. Un uso de cada comodín por partida y combinables. Usar solo mientras se responde. Si 50/50 precede a consulta, distribuir entre opciones restantes; si consulta precede, conservar porcentajes al eliminar opciones.

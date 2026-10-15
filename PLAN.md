@@ -55,3 +55,6 @@ Sala con internet y navegador actualizado. Enlace accesible para quien lo tenga;
 
 ## Autorización posterior del usuario
 Cuestionario aprobado. El usuario solicitó implementar y desplegar públicamente en un repositorio de su cuenta GitHub, sin nueva pausa para diseño o publicación. expo.md será una guía/prompt de conversión nativa futura, no la conversión en sí.
+
+## Actualización visual y sonora
+Logo oficial suministrado por el usuario, ilustración NS-93 a partir de su fotografía y efectos locales de aplausos/chicharra. Sincronizar la pregunta con la posición final real del tren y comprobar imágenes, audio y llegada en navegador antes de republicar.

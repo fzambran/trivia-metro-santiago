@@ -57,3 +57,17 @@ No se ha realizado ensayo con proyector físico ni se ha comprobado Safari/Firef
 | expo.md solicitado | Prompt de conversión nativa completo; no se afirma una conversión ya implementada |
 
 El ensayo físico con proyector no se presenta como realizado y debe ejecutarse antes de la capacitación. No bloquea la entrega técnica publicada; no se ha reducido el alcance funcional solicitado.
+
+
+## Actualización: logo, NS-93, sonido y llegada
+
+Solicitud posterior del usuario: reemplazar la marca provisional por su logo oficial, representar el NS-93 de la fotografía, añadir aplausos/chicharra y revelar preguntas cuando el tren llega.
+
+- `assets/metro-santiago-logo.png` es una copia exacta del adjunto. `assets/ns93.svg` es una ilustración propia basada en el modelo de la fotografía, no un recorte fotográfico.
+- `src/audio.js` produce aplausos estéreo de 2,4 segundos y chicharra de unos 0,7 segundos mediante Web Audio. Se activa el contexto en la interacción del usuario; se reproduce solo después del suspenso. No usa grabaciones ni servicios externos. Reiniciar detiene el efecto en curso.
+- La llegada se comprueba geométricamente y mediante `transitionend`; el temporizador de respaldo espera la posición final antes de revelar la pregunta. El reinicio vuelve inmediatamente a Neptuno.
+- 18 pruebas unitarias (15 reglas + 3 audio), todas aprobadas. Se verifica la generación de audio no vacío, contexto reanudado, aplausos estéreo, osciladores de chicharra y degradación sin bloquear el juego si no hay audio disponible.
+- Navegador: imágenes cargadas, eventos reales de Web Audio en estado running tras aciertos/errores, incluido el décimo acierto. Se observa la posición del tren cuando se inserta la pregunta; no debe separarse más de un píxel del centro de la estación.
+- Prueba adicional: transición visual extendida a 3000 ms; la pregunta sigue oculta a los 2700 ms y aparece al llegar, sin depender solo del temporizador de 2500 ms.
+- Capturas y evidencia de las dos resoluciones se actualizan en `evidence/`. La evidencia remota de esta actualización se registrará tras desplegar.
+- No se ha realizado escucha con los altavoces físicos de la sala; el relator debe ajustar su volumen antes de la capacitación.

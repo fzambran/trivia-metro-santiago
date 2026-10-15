@@ -1,16 +1,20 @@
 import { questions } from './questions.js';
 import { Game, TRAVEL_MS, SUSPENSE_MS } from './game.js';
+import { FeedbackAudio } from './audio.js';
 const game=new Game();
+const sounds=new FeedbackAudio();
 const screen=document.querySelector('#screen');
 const names=['Neptuno',...questions.map(q=>q.station)];
 const letters=['a','b','c','d'];
 let timer;
+let arrivalFrame;
+let arrivalListener;
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 const button=(action,label,cls='primary')=>`<button class="${cls}" data-action="${action}">${label}</button>`;
 function route() {
  document.querySelector('#stations').innerHTML=names.map((name,i)=>{const completed=i>0&&i<=game.hits; const current=i===game.index+1;return `<li class="${completed?'completed':''} ${current?'current':''} ${i===5?'safe-stop':''}" ${current?'aria-current="step"':''}><span class="dot">${completed?'✓':i===5?'◆':''}</span><span class="station-name">${name}</span>${i===0?'<small>PARTIDA</small>':i===5?'<small>SEGURA</small>':''}</li>`;}).join('');
  const x=4.545+(Math.max(0,game.index+1)/10)*90.909;
- const train=document.querySelector('#train');train.style.left=`${x}%`;train.style.transitionDuration=reduced.matches?'0s':`${TRAVEL_MS}ms`;train.setAttribute('aria-label',`Tren ${game.phase==='travel'?'hacia':'en'} ${names[Math.max(0,game.index+1)]}`);
+ const train=document.querySelector('#train');train.style.transitionDuration=reduced.matches||game.phase==='intro'?'0s':`${TRAVEL_MS}ms`;train.style.left=`${x}%`;train.setAttribute('aria-label',`Tren NS-93 ${game.phase==='travel'?'hacia':'en'} ${names[Math.max(0,game.index+1)]}`);
  document.querySelector('#rail-done').style.width=`${game.hits/10*90.909}%`;
  document.querySelector('#progress').textContent=game.index<0?'En el punto de partida · 0 de 10':`${game.question.station} · Pregunta ${game.index+1} de 10`;
 }
@@ -26,10 +30,35 @@ function render(focus=true) {
  }
  if(focus)screen.focus({preventScroll:true});
 }
-function travel() { render();timer=setTimeout(()=>{game.arrive();render();},TRAVEL_MS); }
+function clearArrival() {
+ clearTimeout(timer);cancelAnimationFrame(arrivalFrame);
+ if(arrivalListener)document.querySelector('#train').removeEventListener('transitionend',arrivalListener);
+ arrivalListener=null;
+}
+function travel() {
+ clearArrival();
+ const train=document.querySelector('#train');
+ // Commit the departure position before changing the destination.
+ void train.offsetWidth;
+ function arriveWhenStopped() {
+   if(game.phase!=='travel')return;
+   const vehicle=train.getBoundingClientRect();
+   const station=document.querySelector('li.current .dot').getBoundingClientRect();
+   const moving=train.getAnimations().some(animation=>animation.playState==='running');
+   if(!moving&&Math.abs(vehicle.left+vehicle.width/2-station.left-station.width/2)<1) {
+     clearArrival();game.arrive();render();
+   } else arrivalFrame=requestAnimationFrame(arriveWhenStopped);
+ }
+ arrivalListener=event=>{if(event.propertyName==='left')arriveWhenStopped();};
+ train.addEventListener('transitionend',arrivalListener);
+ render();
+ // Reduced motion and browsers without transition events use the same arrival check.
+ timer=setTimeout(arriveWhenStopped,TRAVEL_MS);
+}
 screen.addEventListener('click',event=>{
  const target=event.target.closest('button');if(!target||target.disabled)return;
- if(target.dataset.answer!==undefined){if(game.select(Number(target.dataset.answer))){render();timer=setTimeout(()=>{game.resolve();render();},SUSPENSE_MS);}return;}
- switch(target.dataset.action){case 'start':if(game.start())travel();break;case 'next':if(game.next())travel();break;case 'finish':game.finish();render();break;case 'restart':clearTimeout(timer);game.reset();render();break;case 'half':case 'poll':if(game.lifeline(target.dataset.action))render(false);break;}
+ sounds.unlock();
+ if(target.dataset.answer!==undefined){if(game.select(Number(target.dataset.answer))){render();timer=setTimeout(()=>{game.resolve();render();sounds.play(game.selected===game.question.correct);},SUSPENSE_MS);}return;}
+ switch(target.dataset.action){case 'start':if(game.start())travel();break;case 'next':if(game.next())travel();break;case 'finish':game.finish();render();break;case 'restart':clearArrival();sounds.stop();game.reset();render();break;case 'half':case 'poll':if(game.lifeline(target.dataset.action))render(false);break;}
 });
 render(false);
