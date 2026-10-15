@@ -4,7 +4,9 @@ Juego web estático para capacitación interna. El relator proyecta la pantalla 
 
 ## Jugar
 
-Enlace previsto de GitHub Pages: https://fzambran.github.io/trivia-metro-santiago/ (consultar VALIDATION.md para el estado comprobado de publicación).
+**Jugar:** https://fzambran.github.io/trivia-metro-santiago/ — publicado y verificado sin sesión.
+
+**Respaldo sin conexión:** https://fzambran.github.io/trivia-metro-santiago/trivia-offline.html (guardar el archivo HTML).
 
 1. Abre el juego en un navegador actualizado, con zoom al 100 % y pantalla completa para proyectar.
 2. Pulsa **Comenzar el viaje**. El tren parte en Neptuno y avanza a Pajaritos; cada pregunta aparece tras 2,5 segundos de viaje.

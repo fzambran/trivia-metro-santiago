@@ -33,3 +33,6 @@ Jornada 1: documentos creados; CUESTIONARIO.md es una propuesta pendiente de val
 
 ## Actualización de autorización
 El usuario validó el cuestionario e indicó continuar con implementación y despliegue público en su cuenta GitHub. Esa instrucción posterior autoriza avanzar sin nuevas validaciones de diseño/publicación. También confirmó expo.md para conversión futura a Expo/React Native. Se conservan las observaciones documentales del cuestionario.
+
+## Resultado de implementación
+Aplicación estática publicada en https://fzambran.github.io/trivia-metro-santiago/ y repositorio público en https://github.com/fzambran/trivia-metro-santiago. Quince pruebas de reglas y comprobaciones de navegador en ambas resoluciones aprobadas localmente y en el enlace público. Evidencia en VALIDATION.md y evidence/. El ensayo con proyector físico queda pendiente del relator.

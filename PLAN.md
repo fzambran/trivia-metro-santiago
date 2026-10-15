@@ -48,7 +48,7 @@ Cinco jornadas estimadas para una web publicada, proyectada y operada por el rel
 - [x] Implementación.
 - [x] Pruebas automatizadas y revisión visual. Ensayo con proyector físico pendiente del relator.
 - [x] Publicación pública autorizada por el usuario.
-- [ ] Publicación, verificación y entrega.
+- [x] Publicación, verificación remota y entrega documental.
 
 ## Supuestos
 Sala con internet y navegador actualizado. Enlace accesible para quien lo tenga; sin información confidencial. Sin móviles de participantes ni equipos con puntajes. El proyecto mide funcionamiento y facilidad de uso; evaluar aprendizaje queda fuera de esta versión.
