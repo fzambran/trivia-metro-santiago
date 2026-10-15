@@ -42,7 +42,7 @@ El script usa Chrome instalado (`channel: chrome`). Instala Chrome si no está d
 ## Estructura y despliegue
 
 - `src/questions.js`: cuestionario validado por el usuario, incluidas observaciones documentales en CUESTIONARIO.md.
-- `src/game.js`: reglas independientes de la interfaz; `src/app.js`: vistas, eventos y temporizadores; `src/audio.js`: efectos sintetizados de aplausos y chicharra.
+- `src/game.js`: reglas independientes de la interfaz; `src/app.js`: vistas, eventos y temporizadores; `src/audio.js`: grabación de aplausos elegida por el usuario y chicharra sintetizada.
 - `assets/`: logo oficial adjunto e ilustración vectorial del NS-93 basada en la fotografía de referencia.
 - `tests/`: reglas y transiciones; `scripts/browser-check.mjs`: partidas y revisión en 1366 × 768 y 1920 × 1080.
 - `.github/workflows/pages.yml`: ejecuta pruebas y publica exclusivamente `dist/` desde main. En Settings → Pages seleccionar GitHub Actions como origen.
@@ -51,3 +51,5 @@ El script usa Chrome instalado (`channel: chrome`). Instala Chrome si no está d
 No hay servidor, cuentas, datos personales, analítica ni persistencia. Ningún voto corresponde a asistentes reales. El mapa es esquemático y representa el tramo del juego, no la Línea 1 completa. Este recurso de capacitación no es un sitio oficial de Metro.
 
 La revisión visual local no sustituye el ensayo físico con proyector; el relator debe comprobarlo antes de su capacitación.
+
+El aplauso usa un fragmento de tres segundos del [sonido indicado por el usuario](https://www.youtube.com/watch?v=PsLXAIN-fxo), almacenado en `assets/applause.mp3`. Fuente y edición en `assets/AUDIO.md`. También está incrustado en el respaldo sin conexión.

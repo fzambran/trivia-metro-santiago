@@ -1,11 +1,11 @@
 {
   "base": "http://127.0.0.1:4173",
-  "checkedAt": "2026-10-15T18:53:38.949Z",
+  "checkedAt": "2026-10-15T19:09:13.368Z",
   "report": [
     {
       "realAnimation": "passed",
       "midpoint": {
-        "x": 197.3125,
+        "x": 197.328125,
         "stops": [
           111.75,
           226
@@ -121,6 +121,7 @@
       "reducedMotion": true,
       "assetsLoaded": true,
       "applauseAfterCorrect": true,
+      "recordedApplauseSeconds": 3,
       "buzzerAfterWrong": true,
       "questionOnlyAfterArrival": true
     },
@@ -229,12 +230,14 @@
       "reducedMotion": true,
       "assetsLoaded": true,
       "applauseAfterCorrect": true,
+      "recordedApplauseSeconds": 3,
       "buzzerAfterWrong": true,
       "questionOnlyAfterArrival": true
     },
     {
       "offlineFile": "passed",
-      "embeddedImages": true
+      "embeddedImages": true,
+      "embeddedRecording": true
     }
   ]
 }

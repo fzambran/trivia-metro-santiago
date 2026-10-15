@@ -1,15 +1,22 @@
-// Original synthesized effects; no recordings, downloads or external services.
+// Applause recording supplied by the user via YouTube; buzzer synthesized locally.
+const APPLAUSE_URL = './assets/applause.mp3';
+async function loadRecording(context) {
+  const response=await fetch(APPLAUSE_URL);
+  if(!response.ok)throw new Error('Applause recording could not be loaded');
+  return context.decodeAudioData(await response.arrayBuffer());
+}
 export class FeedbackAudio {
-  constructor(createContext = () => new (globalThis.AudioContext || globalThis.webkitAudioContext)()) {
-    this.createContext=createContext; this.context=null; this.applause=null; this.active=[];
+  constructor(createContext = () => new (globalThis.AudioContext || globalThis.webkitAudioContext)(), loadApplause=loadRecording) {
+    this.createContext=createContext; this.loadApplause=loadApplause; this.context=null; this.applause=null; this.active=[]; this.ready=null; this.generation=0;
   }
   unlock() {
     try {
       this.context ??= this.createContext();
       if(this.context.state==='suspended')this.context.resume().catch(()=>{});
+      if(!this.ready)this.ready=Promise.resolve(this.loadApplause(this.context)).then(buffer=>{this.applause=buffer;}).catch(()=>{this.ready=null;});
     } catch { /* Audio support is optional; it never blocks a game action. */ }
   }
-  stop() { for(const source of this.active){try{source.stop();}catch{}} this.active=[]; }
+  stop() { this.generation++; for(const source of this.active){try{source.stop();}catch{}} this.active=[]; }
   play(correct) {
     const ctx=this.context;if(!ctx||ctx.state!=='running')return;
     this.stop();
@@ -17,25 +24,15 @@ export class FeedbackAudio {
       const gain=ctx.createGain();gain.connect(ctx.destination);
       if(correct) {
         if(!this.applause) {
-          const duration=2.4, rate=ctx.sampleRate;
-          this.applause=ctx.createBuffer(2,Math.ceil(rate*duration),rate);
-          // Many short, staggered handclaps with a brief crowd-like decay.
-          for(let channel=0;channel<2;channel++) {
-            const data=this.applause.getChannelData(channel);
-            for(let clap=0;clap<85;clap++) {
-              const start=Math.floor((Math.random()*1.85+channel*.004)*rate);
-              const amplitude=.2+Math.random()*.35;let previous=0;
-              for(let j=0;j<rate*.13&&start+j<data.length;j++) {
-                const noise=Math.random()*2-1;
-                data[start+j]+=(noise-previous*.65)*Math.exp(-j/(rate*.018))*amplitude;
-                previous=noise;
-              }
-            }
-            for(let i=0;i<data.length;i++)data[i]=Math.tanh(data[i]);
-          }
+          // Decode may still be in flight on a slow connection. Cancel pending
+          // playback if a reset or a newer result occurs before it completes.
+          gain.disconnect();
+          const generation=this.generation;
+          this.ready?.then(()=>{if(this.applause&&generation===this.generation)this.play(true);});
+          return;
         }
         const source=ctx.createBufferSource();source.buffer=this.applause;
-        gain.gain.value=.48;source.connect(gain);source.start();
+        gain.gain.value=.8;source.connect(gain);source.start();
         source.onended=()=>gain.disconnect();this.active.push(source);
       } else {
         const now=ctx.currentTime;

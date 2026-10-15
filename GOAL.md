@@ -39,3 +39,5 @@ Aplicación estática publicada en https://fzambran.github.io/trivia-metro-santi
 
 ## Cambios solicitados tras la entrega
 Incorporar el logo oficial adjunto, tren NS-93 basado en la referencia, aplausos al acertar y chicharra al fallar. La pregunta debe aparecer al finalizar efectivamente el movimiento. Sonidos originales sintetizados localmente, sin servicios externos.
+
+Actualización de sonido: el usuario eligió https://www.youtube.com/watch?v=PsLXAIN-fxo. Sustituir únicamente los aplausos sintetizados por un fragmento local de esa grabación, conservando chicharra y compatibilidad sin conexión.

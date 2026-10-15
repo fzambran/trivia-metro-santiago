@@ -80,3 +80,12 @@ Solicitud posterior del usuario: reemplazar la marca provisional por su logo ofi
 - Suite de navegador repetida sobre https://fzambran.github.io/trivia-metro-santiago/: aprobada en ambas resoluciones, incluidos imágenes cargadas, audio Web Audio, llegada real y animación retrasada, victoria, derrota y reinicio.
 - HTTP 200 y coincidencia exacta con fuentes verificadas para HTML, CSS, app.js, audio.js, logo oficial, NS-93 y respaldo offline.
 - El logo publicado coincide byte por byte con el adjunto del usuario. Las capturas locales del repositorio se renovaron con la nueva apariencia.
+
+
+## Aplausos seleccionados desde YouTube
+
+- Fuente indicada expresamente por el usuario: https://www.youtube.com/watch?v=PsLXAIN-fxo. Fragmento local de 3 segundos (00:00.450–00:03.450), estéreo, con cierre de 350 ms. Fuente y edición en assets/AUDIO.md.
+- Sustituida la síntesis de aplausos por decodificación y reproducción del MP3 local. La chicharra se conserva. No se contacta YouTube durante el juego.
+- Carga asíncrona: reproducción diferida si la grabación aún no está lista, cancelada si se reinicia o llega otro resultado; fallos de carga no bloquean las reglas ni la chicharra.
+- 21 pruebas unitarias aprobadas (15 reglas y 6 audio). Navegador comprueba la duración decodificada de aproximadamente 3 segundos, reproducción tras aciertos, ambas resoluciones y MP3 incrustado en respaldo offline.
+- La verificación pública de esta actualización se registrará después del despliegue.
