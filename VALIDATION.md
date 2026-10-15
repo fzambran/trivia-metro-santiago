@@ -88,4 +88,6 @@ Solicitud posterior del usuario: reemplazar la marca provisional por su logo ofi
 - Sustituida la síntesis de aplausos por decodificación y reproducción del MP3 local. La chicharra se conserva. No se contacta YouTube durante el juego.
 - Carga asíncrona: reproducción diferida si la grabación aún no está lista, cancelada si se reinicia o llega otro resultado; fallos de carga no bloquean las reglas ni la chicharra.
 - 21 pruebas unitarias aprobadas (15 reglas y 6 audio). Navegador comprueba la duración decodificada de aproximadamente 3 segundos, reproducción tras aciertos, ambas resoluciones y MP3 incrustado en respaldo offline.
-- La verificación pública de esta actualización se registrará después del despliegue.
+- Verificación pública aprobada sobre el enlace del juego: grabación decodificada de aproximadamente 3 segundos y reproducida tras los aciertos en ambas resoluciones. Despliegue: https://github.com/fzambran/trivia-metro-santiago/actions/runs/38791618155 (success), commit funcional c0623fc55825534ee7249207843dcdca94f41039.
+
+Las suites local y remota volvieron a pasar con el reloj de prueba pausado durante la descarga/decodificación del MP3, evitando que la latencia de red altere los límites de 2499/2500 ms. La prueba de animación real conserva su reloj real. El MP3, audio.js y el HTML offline publicados coinciden exactamente con los archivos verificados.

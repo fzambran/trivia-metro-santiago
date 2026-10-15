@@ -1,11 +1,11 @@
 {
   "base": "https://fzambran.github.io/trivia-metro-santiago/",
-  "checkedAt": "2026-10-15T18:55:32.101Z",
+  "checkedAt": "2026-10-15T19:11:46.709Z",
   "report": [
     {
       "realAnimation": "passed",
       "midpoint": {
-        "x": 197.328125,
+        "x": 198.359375,
         "stops": [
           111.75,
           226
@@ -121,6 +121,7 @@
       "reducedMotion": true,
       "assetsLoaded": true,
       "applauseAfterCorrect": true,
+      "recordedApplauseSeconds": 3,
       "buzzerAfterWrong": true,
       "questionOnlyAfterArrival": true
     },
@@ -229,6 +230,7 @@
       "reducedMotion": true,
       "assetsLoaded": true,
       "applauseAfterCorrect": true,
+      "recordedApplauseSeconds": 3,
       "buzzerAfterWrong": true,
       "questionOnlyAfterArrival": true
     }
