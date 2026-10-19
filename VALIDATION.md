@@ -126,3 +126,11 @@ Archivo integrado: assets/metro-santiago-logo-transparent.png. Canal alfa RGBA c
 Prompt de edición: «Eliminar únicamente el fondo blanco, incluyendo el interior del óvalo y espacios de las letras; preservar el logo, texto METRO DE SANTIAGO, colores, rombos degradados, óvalo metálico y marca registrada; entregar PNG con transparencia real y sin fondo blanco». Herramienta: ImageGen integrada, modo background-extraction.
 
 Validación local del logo: suite de navegador existente aprobada en 1366 × 768 y 1920 × 1080, incluida carga del logo incrustado en el respaldo sin conexión. Se revisó visualmente la integración sobre #f6f5f1 sin rectángulo blanco. Capturas: evidence/logo-transparent-1366.png y evidence/logo-transparent-1920.png; informe: evidence/logo-transparent-report.json.
+
+Verificación pública: despliegue https://github.com/fzambran/trivia-metro-santiago/actions/runs/39190162802 aprobado, commit funcional 93c8f0ac9c0bdc62a40ffa4749cfcb744cc0c9cc. El PNG público responde HTTP 200, coincide con el archivo integrado y conserva alfa 0–255. Se verificaron la referencia del HTML público y la coincidencia del respaldo offline con la compilación local.
+
+Prompt final usado con ImageGen integrada:
+
+> Use case: background-extraction. Edit target: the supplied official Metro de Santiago logo PNG. Remove ONLY the white background and make it genuinely transparent with alpha, including the white interior of the oval and enclosed white spaces of all letters and registered trademark. Preserve the existing logo exactly: original wide composition, black lettering METRO DE SANTIAGO, original letter shapes and spacing, the three red gradient diamonds, metallic silver oval, fine edges and registered trademark. Do not redesign, redraw, embellish, change colors, change typography or add any text or shadow. Keep all genuine white/silver highlights on the metallic oval and red diamonds opaque where part of the artwork. Preserve original 944 by 237 proportions. Deliver a clean transparent PNG cutout without a white matte, with crisp antialiased edges.
+
+El resultado generado es RGBA de 2170 × 725; se integra manteniendo su relación de aspecto y el ancho del encabezado. La inspección visual comprueba la apariencia, no equivalencia píxel a píxel con el original.
