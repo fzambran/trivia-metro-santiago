@@ -115,3 +115,14 @@ Evidencia local:
 Verificación pública aprobada: las diez preguntas y la victoria en los siete anchos de ventana, y partida completa con animación real y redimensionamiento durante el viaje a la pregunta 7. Evidencia en evidence/remote/arrival-report.json.
 
 Despliegue de la corrección: https://github.com/fzambran/trivia-metro-santiago/actions/runs/38819907766 (success), commit funcional bcf1e7ea0d21edfbb74eee5342b41a48d4c9edcb. El job incluye las 21 pruebas unitarias y la regresión de llegada con Chrome antes de publicar. HTML, app.js y respaldo offline públicos coinciden byte por byte con la versión verificada.
+
+
+## Logo con transparencia — 18 de octubre de 2026
+
+El usuario adjuntó un logo con óvalo metálico, rombos rojos y texto negro. Se comprobó que el original (944 × 237, RGBA) era completamente opaco: alfa 255 en todos los píxeles y fondo blanco. Tras su autorización para eliminar el fondo se creó una versión con transparencia mediante la herramienta integrada ImageGen.
+
+Archivo integrado: assets/metro-santiago-logo-transparent.png. Canal alfa RGBA con extremos 0 y 255; las cuatro esquinas tienen alfa 0. La página y el respaldo offline usan esta nueva versión. El archivo original de la entrega anterior se conserva sin alteración.
+
+Prompt de edición: «Eliminar únicamente el fondo blanco, incluyendo el interior del óvalo y espacios de las letras; preservar el logo, texto METRO DE SANTIAGO, colores, rombos degradados, óvalo metálico y marca registrada; entregar PNG con transparencia real y sin fondo blanco». Herramienta: ImageGen integrada, modo background-extraction.
+
+Validación local del logo: suite de navegador existente aprobada en 1366 × 768 y 1920 × 1080, incluida carga del logo incrustado en el respaldo sin conexión. Se revisó visualmente la integración sobre #f6f5f1 sin rectángulo blanco. Capturas: evidence/logo-transparent-1366.png y evidence/logo-transparent-1920.png; informe: evidence/logo-transparent-report.json.
